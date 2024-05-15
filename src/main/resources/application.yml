@@ -19,3 +19,4 @@ Spring:
 server:
   tomcat:
     max-swallow-size: 100MB
+  port: 8082

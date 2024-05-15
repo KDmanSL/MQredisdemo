@@ -70,13 +70,13 @@ public class BaiduAIServiceImpl implements BaiduAIService {
         map.put("uuid", uuid);
         map.put("file_url", fileUrl);
 
-        stringRedisTemplate.opsForStream().add(MQ_NAME_SERVER, map);
-//        // 1.执行lua脚本
-//        stringRedisTemplate.execute(
-//                SECKILL_SCRIPT,
-//                Collections.emptyList(),
-//                uuid, fileUrl
-//        );
+        //stringRedisTemplate.opsForStream().add(MQ_NAME_SERVER, map);
+        // 1.执行lua脚本
+        stringRedisTemplate.execute(
+                SECKILL_SCRIPT,
+                Collections.emptyList(),
+                uuid, fileUrl
+        );
         log.info("MQ添加成功", uuid);
         CompletableFuture<String> future = new CompletableFuture<>();
         futures.put(uuid, future);
